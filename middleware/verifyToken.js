@@ -3,7 +3,7 @@ function verifyToken(req, res, next) {
   let token = req.headers["authorization"];
   if (token) {
     token = token.split(" ")[1];
-    jwt.verify(token, process.env.JWT_KEY, (err, payload) => {
+    jwt.verify(token, process.env.JWTKEY, (err, payload) => {
       if (err) {
         res.status(401).send({ meassage: "please provide valid token" });
       } else {

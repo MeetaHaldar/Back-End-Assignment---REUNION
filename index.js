@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.send("hello there");
 });
 app.use("/api", Auth);
-mongoose.connect(process.env.MONGO_STRING).then(() => {
+mongoose.connect(process.env.MONGOSTRING).then(() => {
   console.log("connected to mongodb");
   app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`);

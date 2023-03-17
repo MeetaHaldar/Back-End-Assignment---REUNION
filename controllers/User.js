@@ -25,7 +25,7 @@ const registeruser = async (req, res) => {
 
     jwt.sign(
       { user: userObj },
-      process.env.JWT_KEY,
+      process.env.JWTKEY,
       { expiresIn: "4h" },
       (err, accessToken) => {
         if (err) {
@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
       delete userObj.password;
       jwt.sign(
         { user: userObj },
-        process.env.JWT_KEY,
+        process.env.JWTKEY,
         { expiresIn: "4h" },
         (err, accessToken) => {
           if (err) {
