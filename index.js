@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const { default: mongoose } = require("mongoose");
-const PORT = 4000 | process.env.PORT;
+const PORT = 4000 || process.env.PORT;
 const Auth = require("./Routes/user");
 
 const app = express();
@@ -13,9 +13,11 @@ app.get("/", (req, res) => {
   res.send("hello there");
 });
 app.use("/api", Auth);
-mongoose.connect(process.env.MONGOSTRING).then(() => {
-  console.log("connected to mongodb");
-  app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
+mongoose
+  .connect(process.env.MONGOSTRING, { useNewUrlParser: true })
+  .then(() => {
+    console.log("connected to mongodb");
+    app.listen(PORT, () => {
+      console.log(`server is running on port ${PORT}`);
+    });
   });
-});
